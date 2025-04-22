@@ -13,6 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Test SSH connection
+        run: |
+          ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'Connected!'"  
+
       - name: Setup SSH key on GitHub Runners
         run: |
           mkdir -p ~/.ssh
