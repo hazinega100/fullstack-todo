@@ -21,6 +21,7 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+          ssh -T ${REMOTE_USER}@${REMOTE_HOST} || exit 1
 
       - name: Deploy to server
         run: |
