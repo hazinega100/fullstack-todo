@@ -1,0 +1,23 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main  # или другая ветка
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to server
+        run: |
+          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
+            cd ${{ secrets.REMOTE_PATH }}
+            docker compose pull
+            docker compose build
+            docker compose up -d
+          EOF
