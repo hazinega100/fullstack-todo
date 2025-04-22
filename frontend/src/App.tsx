@@ -19,7 +19,7 @@ function App() {
 
     return (
         <div>
-            <Title>To-Do List GitHub A</Title>
+            <Title>To-Do List GitHub Action</Title>
             <Button onClick={handleAddTask}>Add Task</Button>
             <ul>
                 {tasks?.map((task: any) => (
